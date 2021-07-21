@@ -1,0 +1,30 @@
+<br/>
+<app-register *ngIf="(accountService.currentUser$ | async) === null"></app-register>
+<div class="container" *ngIf="(accountService.currentUser$ | async)" style="margin-top: 100px;">
+    <div >
+        <h2>Tables</h2>
+        <form #updateForm="ngForm" id="updateForm" (ngSubmit)="updateMember()"></form>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Table No.</th>
+                        <th>Availability</th>
+                        <th>Book</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let table of tables">
+                        <td>
+                            {{ table.id }}
+                        </td>
+                        <td>
+                            {{ table.status }}
+                        </td>
+                        <td>
+                            <mat-slide-toggle [checked]="!table.available" (change)="bookToggle($event, table.id)"></mat-slide-toggle>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>

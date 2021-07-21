@@ -1,0 +1,24 @@
+
+<div class="container">
+    <div>
+        <img src="assets/Images/profileimg.png" style="width: 250px; height: 250px;">
+        <input name="file" type="file" (change)="onFileSelected($event)">
+        <button type="button" (click)="onFileUpload()">Change Profile Picture</button>
+    </div>
+
+    <div>
+        <br><h2>Add Table</h2>
+        <form #addForm="ngForm" id="addForm" (ngSubmit)="addTable()">
+            <h2>Availability</h2>
+            <input class="form-control" name="available" [(ngModel)]="tableObj.available"/>
+                
+            <h2>Status</h2>
+            <input class="form-control" name="status" [(ngModel)]="table.status"/>
+            <button class="btn btn-primary" type="submit" form="addForm" [disabled]="!addForm.dirty">
+                Save <a class="fa fa-save"></a>
+            </button>
+        </form>
+    </div>
+</div>
+
+

@@ -1,0 +1,33 @@
+<div class="container" *ngIf="(accountService.currentUser$ | async) === null">
+    <div class="jumbotron bg-cover centering" *ngIf="!registerMode">
+            <h1 class="display-3"><i class="fa fa-restroom"></i></h1>
+            <p class="lead">Restaurant reservation</p>
+            <hr class="my-4">
+            <p>Reserve a table</p>
+            <p class="lead">
+            <button class="btn btn-primary btn-lg alignbtn" (click)="toggleRegister()">Register &nbsp;<a class="fa  fa-user-plus"></a></button>
+            </p>
+        </div>
+    
+    <div class="parent">
+        <form #myForm="ngForm" (ngSubmit)="register()" validate *ngIf="registerMode">
+            <h1 class="text-center text-primary">Sign Up!</h1>
+            <hr>
+                <mat-form-field style="width: 500px;">
+                        <input class="text-dark" name="username" required 
+                        [(ngModel)]="model.username" matInput type="text" placeholder="Username">
+                        <mat-error>Username is required!</mat-error>
+                </mat-form-field><br>
+                <mat-form-field style="width: 500px;" >
+                    <input class="text-dark" name="password" required 
+                    [(ngModel)]="model.password" matInput type="password" placeholder="Password">
+                    <mat-error>Password is required!</mat-error>
+                </mat-form-field><br>
+            <div class="btn-group d-flex">
+                <button class="alignbtn2 btn btn-primary" type="submit" [disabled]="!myForm.valid">Register &nbsp;<a class="fa  fa-user-plus"></a></button>
+                <button class="btn btn-secondary ml-2 alignbtn2" (click)="toggleRegister()" type="button">Cancel</button>        
+            </div>
+        </form>
+    
+    </div>
+</div>
